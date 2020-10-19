@@ -17,6 +17,7 @@ class App extends StatelessWidget {
 class HomeScreen extends StatelessWidget {
   final TextEditingController _internalController = TextEditingController();
   final CalculatorBloc _calculatorBloc = CalculatorBloc(null);
+  bool _validate = false;
   TextStyle textStyle = TextStyle(
     fontFamily: 'Poppins-Regular',
     fontSize: 18,
@@ -41,11 +42,11 @@ class HomeScreen extends StatelessWidget {
         create: (context) => _calculatorBloc,
         child: BlocListener<CalculatorBloc, CalculatorState>(
           listener: (context, state) {
-            if (state is CalculatorFailed) {
-              Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text('${state.error}'),
-              ));
-            }
+            // if (state is CalculatorFailed) {
+            //   Scaffold.of(context).showSnackBar(SnackBar(
+            //     content: Text('${state.error}'),
+            //   ));
+            // }
           },
           child: SafeArea(
             child: Padding(
@@ -136,7 +137,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   void calculate(Year year) {
-    int numberA = int.parse(_internalController.text.toString());
-    _calculatorBloc.add(CalculatorEvent(year, numberA));
+    int internal = int.parse(_internalController.text.toString());
+    _calculatorBloc.add(CalculatorEvent(year, internal));
   }
 }

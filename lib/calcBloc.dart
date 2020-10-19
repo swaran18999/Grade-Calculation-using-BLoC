@@ -15,11 +15,11 @@ class CalculatorSuccess extends CalculatorState {
   CalculatorSuccess(this.result);
 }
 
-class CalculatorFailed extends CalculatorState {
-  final String error;
+// class CalculatorFailed extends CalculatorState {
+//   final String error;
 
-  CalculatorFailed(this.error);
-}
+//   CalculatorFailed(this.error);
+// }
 
 class CalculatorEvent {
   final Year year;
@@ -29,11 +29,6 @@ class CalculatorEvent {
 
 class CalculatorBloc extends Bloc<CalculatorEvent, CalculatorState> {
   CalculatorBloc(CalculatorState initialState) : super(initialState);
-
-  @override
-  CalculatorState get initialState {
-    return CalculatorInitial();
-  }
 
   @override
   Stream<CalculatorState> mapEventToState(CalculatorEvent event) async* {
