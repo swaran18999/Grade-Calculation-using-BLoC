@@ -1,17 +1,20 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
+
 enum Year { y2016, y2018 }
 
 class TextBloc {
-  var _textController = StreamController<String>();
+  var textController = StreamController<String>();
   // StreamSink<Stream> get textSink => _textController.sink;
-  Stream<String> get textStream => _textController.stream;
+  Stream<String> get textStream => textController.stream;
   List<String> grades = ['', '', '', '', '', ''];
   updateText(String text) {
     grades = _calculateGrade2016(text);
     print("grades:"+grades.toString());
-    _textController.sink.add(grades.toString());
-    print(_textController.sink);
+    Text(grades.toString());
+    textController.sink.add(grades.toString());
+    print(textController.sink.toString());
     print(text+"debug");
   }
 
@@ -83,7 +86,7 @@ class TextBloc {
 
 
   dispose() {
-    _textController.close();
+    textController.close();
   }
 }
 
